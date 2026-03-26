@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IT3048FinalNationalParksApp.Auth.LoginPage"
+             Title="LoginPage">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0">
+            <Label Text="Tri-State Trails"
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"/>
+
+            <Label Text="Username"
+                   HorizontalOptions="Start"
+                   Margin="0,15,0,5"/>
+            <Entry x:Name="Username"
+               Placeholder="Enter username"/>
+
+            <Label Text="Password"
+                   HorizontalOptions="Start"
+                   Margin="0,15,0,5"/>
+            <Entry x:Name="Password"
+                   Placeholder="Enter password"/>
+            
+            <Button Text="Log In"
+                    BackgroundColor="Orange"
+                    Clicked="LogIn_Clicked"
+                    FontSize="Large"
+                    HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

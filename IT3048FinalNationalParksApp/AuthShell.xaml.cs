@@ -1,12 +1,10 @@
 ﻿namespace IT3048FinalNationalParksApp
 {
-    public partial class App : Application
+    public partial class AuthShell : Shell
     {
-        public App()
+        public AuthShell()
         {
             InitializeComponent();
-
-            MainPage = new AuthShell();
         }
     }
 }

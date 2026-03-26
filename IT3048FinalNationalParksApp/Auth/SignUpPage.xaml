@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="IT3048FinalNationalParksApp.Auth.SignUpPage"
+             Title="SignUpPage">
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0">
+            <Label Text="Tri-State Trails"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="25"/>
+            
+            <Label Text="New User"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   Margin="25"/>
+
+            <Label Text="First Name"
+                       HorizontalOptions="Start"
+                       Margin="0,15,0,5"/>
+            <Entry x:Name="Firstname"
+                   Placeholder="Enter first name"/>
+
+            <Label Text="Last Name"
+                       HorizontalOptions="Start"
+                       Margin="0,15,0,5"/>
+            <Entry x:Name="Lastname"
+                   Placeholder="Enter last name"/>
+            
+            <Label Text="User Name"
+                       HorizontalOptions="Start"
+                       Margin="0,15,0,5"/>
+            <Entry x:Name="Username"
+                   Placeholder="Enter username"/>
+
+            <Label Text="Enter Email"
+                   HorizontalOptions="Start"
+                       Margin="0,15,0,5"/>
+            <Entry x:Name="Email"
+                   Placeholder="user@email.com">
+                <Entry.Behaviors>
+                    <toolkit:EmailValidationBehavior 
+                        x:Name="EmailValidator"
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label Text="Enter Password"
+                   HorizontalOptions="Start"
+                       Margin="0,15,0,5"/>
+            <Entry x:Name="Password"
+                   Placeholder="8 or more characters"
+                       IsPassword="True"/>
+
+            <Label Text="Confim Password"
+                   HorizontalOptions="Start"
+                       Margin="0,15,0,5"/>
+            <Entry x:Name="ConfirmPassword"
+                   Placeholder="Retype password"
+                       IsPassword="True"/>
+
+            <Button
+                x:Name="SignUpBtn"
+                Text="Create Account" 
+                FontAttributes="Bold"
+                BackgroundColor="Orange"
+                Margin="15"
+                Clicked="OnSignUpClicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
