@@ -1,3 +1,5 @@
+using IT3048FinalNationalParksApp.Services;
+
 namespace IT3048FinalNationalParksApp.Auth;
 
 public partial class SignUpPage : ContentPage
@@ -6,6 +8,13 @@ public partial class SignUpPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private readonly DatabaseService _dbService;
+    public SignUpPage(DatabaseService dbService)
+    {
+        InitializeComponent();
+        _dbService = dbService;
+    }
 
     private async void OnSignUpClicked(object sender, EventArgs e)
     {
@@ -41,6 +50,18 @@ public partial class SignUpPage : ContentPage
             { "Password", Password.Text }
         };
 
+        Application.Current.MainPage = new AppShell();
+
+        var newUser = new Models.User
+        {
+            FirstName = Firstname.Text,
+            LastName = Lastname.Text,
+            Username = Username.Text,
+            Email = Email.Text,
+            Password = Password.Text
+        };
+
+        await _dbService.RegisterUser(newUser);
         Application.Current.MainPage = new AppShell();
     }
 }
