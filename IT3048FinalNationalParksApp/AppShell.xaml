@@ -8,6 +8,18 @@
        Shell.FlyoutBehavior="Disabled"
        Shell.TabBarIsVisible="False">
 
+    <Shell.Resources>
+        <ResourceDictionary>
+            <!-- Tab Bar Styling -->
+            <Style TargetType="TabBar">
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#F5F0E8" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#1B3A2D" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#9E9E9E" />
+                <Setter Property="Shell.TabBarTitleColor" Value="#1B3A2D" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
     <!-- Pre-auth pages (no tab bar) -->
     <ShellContent Route="MainPage"
                   ContentTemplate="{DataTemplate auth:MainPage}" />

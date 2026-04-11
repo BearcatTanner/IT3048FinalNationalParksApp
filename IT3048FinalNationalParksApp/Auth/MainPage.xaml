@@ -1,24 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="IT3048FinalNationalParksApp.Auth.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             
-             x:Class="IT3048FinalNationalParksApp.Auth.MainPage">
-    <VerticalStackLayout
-        Spacing="50">
-        <Label Text="Tri-State Trails"
-               FontSize="Header"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"/>
-        <Button Text="Sign Up"
-                Clicked="SignUp_Clicked"
-                FontSize="Large"
-                WidthRequest="200"
-                HeightRequest="50"/>
-        <Button Text="Log In"
-                Clicked="LogIn_Clicked"
-                FontSize="Large"
-                WidthRequest="200"
-                HeightRequest="50"/>
-    </VerticalStackLayout>
+             Shell.TabBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1B3A2D">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <!-- Hero / Branding -->
+        <VerticalStackLayout Grid.Row="0"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="12"
+                             Padding="32">
+            <Label Text="Tri-State"
+                   FontSize="48"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+            <Label Text="Trails"
+                   FontSize="48"
+                   FontAttributes="Bold"
+                   TextColor="#C8A96E"
+                   HorizontalOptions="Center"
+                   Margin="0,-16,0,0" />
+            <Label Text="Track your national park visits"
+                   FontSize="15"
+                   TextColor="#A8C4B8"
+                   HorizontalOptions="Center"
+                   Margin="0,8,0,0" />
+        </VerticalStackLayout>
+
+        <!-- Auth Buttons -->
+        <VerticalStackLayout Grid.Row="1"
+                             Padding="32,0,32,56"
+                             Spacing="14">
+
+            <Button Text="Sign Up"
+                    Clicked="OnSignUpClicked"
+                    BackgroundColor="#C8A96E"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="10"
+                    HeightRequest="52" />
+
+            <Button Text="Log In"
+                    Clicked="OnLoginClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BorderColor="White"
+                    BorderWidth="1.5"
+                    CornerRadius="10"
+                    HeightRequest="52" />
+
+        </VerticalStackLayout>
+
+    </Grid>
 
 </ContentPage>
