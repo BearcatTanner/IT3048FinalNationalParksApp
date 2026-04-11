@@ -41,6 +41,6 @@ public partial class SignUpPage : ContentPage
             { "Password", Password.Text }
         };
 
-        Application.Current.MainPage = new AppShell();
+        await Shell.Current.GoToAsync("//Home");
     }
 }

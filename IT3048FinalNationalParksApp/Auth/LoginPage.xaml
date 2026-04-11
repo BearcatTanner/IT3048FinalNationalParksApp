@@ -21,6 +21,7 @@
                    HorizontalOptions="Start"
                    Margin="0,15,0,5"/>
             <Entry x:Name="Password"
+                   IsPassword="True"
                    Placeholder="Enter password"/>
             
             <Button Text="Log In"

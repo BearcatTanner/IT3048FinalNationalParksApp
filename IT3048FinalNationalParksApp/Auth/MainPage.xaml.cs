@@ -12,11 +12,8 @@ public partial class MainPage : ContentPage
     }
 
     private async void SignUp_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(SignUpPage));
-    }
+    => await Shell.Current.GoToAsync("//MainPage/SignUpPage");
+
     private async void LogIn_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(LoginPage));
-    }
+        => await Shell.Current.GoToAsync("//MainPage/LoginPage");
 }
