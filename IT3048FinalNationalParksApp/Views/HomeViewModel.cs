@@ -43,7 +43,7 @@ public partial class HomeViewModel : INotifyPropertyChanged
         {
             ParkName = "Cuyahoga Valley",
             Location = "Peninsula, OH",
-            VisitDate = DateTime.Now.AddDays(-3)
+            VisitDate = DateTime.Now
         };
     }
 
