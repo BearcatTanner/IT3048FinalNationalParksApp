@@ -8,5 +8,6 @@
     Title="IT3048FinalNationalParksApp">
 
     <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+    <ShellContent Route="SignUpPage" Title="SignUpPage" ContentTemplate="{DataTemplate local:SignUpPage}" />
 
 </Shell>
