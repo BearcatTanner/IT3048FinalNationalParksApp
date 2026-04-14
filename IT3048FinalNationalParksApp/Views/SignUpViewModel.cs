@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using IT3048FinalNationalParksApp.Services;
+using Microsoft.Maui.Controls;
 
 namespace IT3048FinalNationalParksApp.Views;
 
@@ -103,12 +105,16 @@ public partial class SignUpViewModel : INotifyPropertyChanged
         }
 
         // TODO: replace with real registration service call
-        // bool success = await _authService.RegisterAsync(Firstname, Lastname, Username, Email, Password);
+        // bool success = await _auth_service.RegisterAsync(Firstname, Lastname, Username, Email, Password);
 
         bool success = true; // remove when wired to real service
 
         if (success)
         {
+            // Save basic profile locally until backend exists
+            UserService.SaveUser(firstName: Firstname, lastName: Lastname, username: Username, email: Email, memberSince: DateTime.UtcNow);
+
+            // Reset navigation to Home (clear navigation stack)
             await Shell.Current.GoToAsync("//Home");
         }
         else
