@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IT3048FinalNationalParksApp.MainApp.ProfilePage"
+             Title="Profile">
+
+    <Shell.TitleView>
+        <Label Text="Tri-State Trails"
+               FontSize="22"
+               FontAttributes="Bold"
+               TextColor="#1B3A2D"
+               VerticalOptions="Center"
+               HorizontalOptions="Start"
+               Margin="4,0,0,0" />
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Hero area -->
+            <Grid HeightRequest="160">
+                <BoxView Color="#1B3A2D" />
+                <VerticalStackLayout VerticalOptions="End"
+                                     Padding="20">
+                    <Label Text="My Profile"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Content -->
+            <VerticalStackLayout Padding="20,24"
+                                 Spacing="20"
+                                 BackgroundColor="#F5F0E8">
+
+                <!-- Profile details (no avatar) -->
+                <Frame BackgroundColor="White"
+                       CornerRadius="12"
+                       Padding="16"
+                       HasShadow="False"
+                       BorderColor="#E0D9CE">
+                    <VerticalStackLayout Spacing="8">
+
+                        <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                            <Label Text="Name:"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   TextColor="#666666" />
+                            <Label Text="{Binding FullName}"
+                                   FontSize="16"
+                                   TextColor="#1B3A2D" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                            <Label Text="Username:"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   TextColor="#666666" />
+                            <Label Text="{Binding Username, StringFormat='@{0}'}"
+                                   FontSize="14"
+                                   TextColor="#666666" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                            <Label Text="Email:"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   TextColor="#666666" />
+                            <Label Text="{Binding Email}"
+                                   FontSize="14"
+                                   TextColor="#666666" />
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Actions -->
+                <Label Text="Actions"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#1B3A2D" />
+
+                <HorizontalStackLayout Spacing="12">
+                    <Button Text="Edit Profile"
+                            Command="{Binding EditProfileCommand}"
+                            AutomationId="EditProfileButton"
+                            BackgroundColor="#1B3A2D"
+                            TextColor="White"
+                            HorizontalOptions="FillAndExpand" />
+                    <Button Text="Log Out"
+                            BackgroundColor="#C84E4E"
+                            TextColor="White"
+                            Command="{Binding LogoutCommand}"
+                            HorizontalOptions="FillAndExpand" />
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

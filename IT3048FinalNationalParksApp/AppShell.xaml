@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="IT3048FinalNationalParksApp.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:IT3048FinalNationalParksApp"
-    Shell.FlyoutBehavior="Disabled"
-    Title="IT3048FinalNationalParksApp">
+<Shell x:Class="IT3048FinalNationalParksApp.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:IT3048FinalNationalParksApp"
+       xmlns:auth="clr-namespace:IT3048FinalNationalParksApp.Auth"
+       xmlns:mainApp="clr-namespace:IT3048FinalNationalParksApp.MainApp"
+       Shell.FlyoutBehavior="Disabled"
+       Shell.TabBarIsVisible="False">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <Shell.Resources>
+        <ResourceDictionary>
+            <!-- Tab Bar Styling -->
+            <Style TargetType="TabBar">
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#F5F0E8" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#1B3A2D" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#9E9E9E" />
+                <Setter Property="Shell.TabBarTitleColor" Value="#1B3A2D" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- Pre-auth pages (no tab bar) -->
+    <ShellContent Route="MainPage"
+                  ContentTemplate="{DataTemplate auth:MainPage}" />
+
+    <!-- Post-auth tabbed pages -->
+    <TabBar x:Name="MainTabBar" Shell.TabBarIsVisible="True">
+        <ShellContent Route="Home"
+                      Title="Home"
+                      Icon="icon_home.png"
+                      ContentTemplate="{DataTemplate mainApp:HomePage}" />
+
+        <ShellContent Route="Search"
+                      Title="Search"
+                      Icon="icon_search.png"
+                      ContentTemplate="{DataTemplate mainApp:SearchPage}" />
+
+        <ShellContent Route="Passport"
+                      Title="Passport"
+                      Icon="icon_passport.png"
+                      ContentTemplate="{DataTemplate mainApp:PassportPage}" />
+
+        <ShellContent Route="Profile"
+                      Title="Profile"
+                      Icon="icon_profile.png"
+                      ContentTemplate="{DataTemplate mainApp:ProfilePage}" />
+    </TabBar>
 
 </Shell>
