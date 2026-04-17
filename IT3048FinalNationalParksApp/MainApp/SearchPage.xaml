@@ -1,12 +1,164 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="IT3048FinalNationalParksApp.MainApp.SearchPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IT3048FinalNationalParksApp.MainApp.SearchPage"
-             Title="SearchPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:views="clr-namespace:IT3048FinalNationalParksApp.Views"
+             Shell.TabBarIsVisible="True"
+             BackgroundColor="#F5F0E8">
+
+    <Shell.TitleView>
+        <Label Text="Tri-State Trails"
+               FontSize="22"
+               FontAttributes="Bold"
+               TextColor="#1B3A2D"
+               VerticalOptions="Center"
+               Margin="4,0,0,0" />
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <!-- Sub-header -->
+        <VerticalStackLayout Grid.Row="0"
+                             Padding="20,16,20,0"
+                             BackgroundColor="#F5F0E8">
+            <Label Text="Park Search"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#1B3A2D" />
+        </VerticalStackLayout>
+
+        <!-- Search Bar -->
+        <Grid Grid.Row="1"
+              Padding="20,12,20,12"
+              ColumnDefinitions="*,Auto"
+              ColumnSpacing="10"
+              BackgroundColor="#F5F0E8">
+
+            <Frame Grid.Column="0"
+                   Padding="12,0"
+                   CornerRadius="10"
+                   BorderColor="#E0D9CE"
+                   BackgroundColor="White"
+                   HasShadow="False"
+                   HeightRequest="48">
+                <Entry Text="{Binding SearchQuery}"
+                       Placeholder="Keywords..."
+                       PlaceholderColor="#BBBBBB"
+                       TextColor="#1B3A2D"
+                       BackgroundColor="Transparent"
+                       VerticalOptions="Center"
+                       ReturnCommand="{Binding SearchCommand}" />
+            </Frame>
+
+            <Button Grid.Column="1"
+                    Command="{Binding SearchCommand}"
+                    BackgroundColor="#1B3A2D"
+                    CornerRadius="10"
+                    HeightRequest="48"
+                    WidthRequest="48"
+                    Text="⌕"
+                    TextColor="White"
+                    FontSize="22"
+                    Padding="0" />
+        </Grid>
+
+        <!-- Results / States -->
+        <Grid Grid.Row="2">
+
+            <!-- Loading -->
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"
+                               Color="#1B3A2D"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+
+            <!-- Empty state — before search -->
+            <VerticalStackLayout IsVisible="{Binding ShowEmptyState}"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="8">
+                <Label Text="🔍"
+                       FontSize="40"
+                       HorizontalOptions="Center" />
+                <Label Text="Search for a park to get started"
+                       FontSize="14"
+                       TextColor="#9E9E9E"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- No results -->
+            <VerticalStackLayout IsVisible="{Binding ShowNoResults}"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="8">
+                <Label Text="😕"
+                       FontSize="40"
+                       HorizontalOptions="Center" />
+                <Label Text="No parks found"
+                       FontSize="14"
+                       TextColor="#9E9E9E"
+                       HorizontalOptions="Center" />
+                <Label Text="Try different keywords"
+                       FontSize="12"
+                       TextColor="#BBBBBB"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Results List -->
+            <CollectionView ItemsSource="{Binding SearchResults}"
+                            IsVisible="{Binding ShowResults}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="views:ParkResult">
+                        <Grid Padding="20,6,20,6">
+                            <Frame BackgroundColor="White"
+                                   CornerRadius="12"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   BorderColor="#E0D9CE">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type views:SearchViewModel}}, Path=SelectParkCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions="90,*"
+                                      HeightRequest="90">
+
+                                    <!-- Park image / placeholder -->
+                                    <BoxView Grid.Column="0"
+                                             Color="#1B3A2D"
+                                             WidthRequest="90" />
+
+                                    <!-- Park info -->
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Padding="14,12"
+                                                         Spacing="3"
+                                                         VerticalOptions="Center">
+                                        <Label Text="{Binding ParkName}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               TextColor="#1B3A2D"
+                                               LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding Location}"
+                                               FontSize="13"
+                                               TextColor="#666666" />
+                                        <Label Text="{Binding Description}"
+                                               FontSize="12"
+                                               TextColor="#9E9E9E"
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="2"
+                                               Margin="0,2,0,0" />
+                                    </VerticalStackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
 </ContentPage>

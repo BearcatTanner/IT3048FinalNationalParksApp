@@ -1,34 +1,88 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="IT3048FinalNationalParksApp.Auth.LoginPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IT3048FinalNationalParksApp.Auth.LoginPage"
-             Title="LoginPage">
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="#F5F0E8">
+
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0">
+        <VerticalStackLayout Padding="32,60,32,32" Spacing="0">
+
+            <!-- Logo / Title -->
             <Label Text="Tri-State Trails"
-               FontSize="Large"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"/>
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="#1B3A2D"
+                   HorizontalOptions="Center" />
+            <Label Text="Log In"
+                   FontSize="20"
+                   TextColor="#666666"
+                   HorizontalOptions="Center"
+                   Margin="0,8,0,40" />
 
-            <Label Text="Username"
-                   HorizontalOptions="Start"
-                   Margin="0,15,0,5"/>
-            <Entry x:Name="Username"
-               Placeholder="Enter username"/>
+            <!-- Username -->
+            <Label Text="Username" FontSize="13" TextColor="#1B3A2D" Margin="0,0,0,4" />
+            <Frame Padding="12,0" CornerRadius="8" BorderColor="#E0D9CE"
+                   BackgroundColor="White" HasShadow="False" Margin="0,0,0,16">
+                <Entry x:Name="UsernameEntry"
+                       Text="{Binding Username}"
+                       Placeholder="Enter your username"
+                       PlaceholderColor="#BBBBBB"
+                       TextColor="#1B3A2D"
+                       BackgroundColor="Transparent"
+                       HeightRequest="44" />
+            </Frame>
 
-            <Label Text="Password"
-                   HorizontalOptions="Start"
-                   Margin="0,15,0,5"/>
-            <Entry x:Name="Password"
-                   Placeholder="Enter password"/>
-            
+            <!-- Password -->
+            <Label Text="Password" FontSize="13" TextColor="#1B3A2D" Margin="0,0,0,4" />
+            <Frame Padding="12,0" CornerRadius="8" BorderColor="#E0D9CE"
+                   BackgroundColor="White" HasShadow="False" Margin="0,0,0,8">
+                <Entry x:Name="PasswordEntry"
+                       Text="{Binding Password}"
+                       Placeholder="Enter your password"
+                       PlaceholderColor="#BBBBBB"
+                       TextColor="#1B3A2D"
+                       IsPassword="True"
+                       BackgroundColor="Transparent"
+                       HeightRequest="44" />
+            </Frame>
+
+            <!-- Error Message -->
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   FontSize="12"
+                   IsVisible="{Binding HasError}"
+                   Margin="0,0,0,16" />
+
+            <!-- Log In Button -->
             <Button Text="Log In"
-                    BackgroundColor="Orange"
-                    Clicked="LogIn_Clicked"
-                    FontSize="Large"
-                    HorizontalOptions="Center"/>
+                    Command="{Binding LoginCommand}"
+                    BackgroundColor="#1B3A2D"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,16,0,0" />
+
+            <!-- Go to Sign Up -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,20,0,0" Spacing="4">
+                <Label Text="Don't have an account?"
+                       FontSize="13"
+                       TextColor="#666666"
+                       VerticalOptions="Center" />
+                <Label Text="Sign Up"
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       TextColor="#1B3A2D"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToSignUpCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

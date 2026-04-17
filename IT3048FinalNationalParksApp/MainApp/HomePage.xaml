@@ -3,10 +3,165 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IT3048FinalNationalParksApp.MainApp.HomePage"
              Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Shell.TitleView>
+        <Label Text="Tri-State Trails"
+               FontSize="22"
+               FontAttributes="Bold"
+               TextColor="#1B3A2D"
+               VerticalOptions="Center"
+               HorizontalOptions="Start"
+               Margin="4,0,0,0" />
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Hero Banner -->
+            <Grid HeightRequest="220">
+                <BoxView Color="#1B3A2D" />
+                <!-- Replace with an Image if you have a hero asset -->
+                <!-- <Image Source="hero_banner.jpg" Aspect="AspectFill" /> -->
+                <VerticalStackLayout VerticalOptions="End"
+                                     Padding="24,20">
+                    <Label Text="Home"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Content Area -->
+            <VerticalStackLayout Padding="20,24"
+                                 Spacing="20"
+                                 BackgroundColor="#F5F0E8">
+
+                <!-- Section: Most Recent Visit -->
+                <Label Text="Most Recent Visit"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#1B3A2D" />
+
+                <!-- Recent Log Card -->
+                <Frame BackgroundColor="White"
+                       CornerRadius="12"
+                       Padding="0"
+                       HasShadow="False"
+                       BorderColor="#E0D9CE">
+                    <Grid ColumnDefinitions="100,*"
+                          HeightRequest="110">
+
+                        <!-- Park Stamp / Image -->
+                        <BoxView Color="#1B3A2D"
+                                 Grid.Column="0"
+                                 WidthRequest="100" />
+                        <!-- Swap BoxView for an Image:
+                        <Image Source="{Binding RecentLog.ParkImageUrl}"
+                               Aspect="AspectFill"
+                               Grid.Column="0" /> -->
+
+                        <!-- Park Info -->
+                        <VerticalStackLayout Grid.Column="1"
+                                             Padding="14,12"
+                                             Spacing="4"
+                                             VerticalOptions="Center">
+                            <Label Text="{Binding RecentLog.ParkName}"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="#1B3A2D"
+                                   LineBreakMode="TailTruncation" />
+                            <Label Text="{Binding RecentLog.Location}"
+                                   FontSize="13"
+                                   TextColor="#666666" />
+                            <Label Text="{Binding RecentLog.VisitDate, StringFormat='Visited: {0:MMM d, yyyy}'}"
+                                   FontSize="12"
+                                   TextColor="#999999"
+                                   Margin="0,4,0,0" />
+                        </VerticalStackLayout>
+
+                    </Grid>
+                </Frame>
+
+                <!-- No Log Fallback (shown when RecentLog is null) -->
+                <Frame BackgroundColor="White"
+                       CornerRadius="12"
+                       Padding="20"
+                       HasShadow="False"
+                       BorderColor="#E0D9CE"
+                       IsVisible="{Binding HasNoLogs}">
+                    <VerticalStackLayout Spacing="8"
+                                         HorizontalOptions="Center">
+                        <Label Text="No visits yet!"
+                               FontSize="15"
+                               TextColor="#9E9E9E"
+                               HorizontalOptions="Center" />
+                        <Label Text="Search for a park and log your first visit."
+                               FontSize="13"
+                               TextColor="#BBBBBB"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Section: Quick Actions -->
+                <Label Text="Explore"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#1B3A2D"
+                       Margin="0,8,0,0" />
+
+                <Grid ColumnDefinitions="*,*"
+                      ColumnSpacing="12">
+
+                    <!-- Find Parks -->
+                    <Frame Grid.Column="0"
+                           BackgroundColor="#1B3A2D"
+                           CornerRadius="12"
+                           Padding="16"
+                           HasShadow="False"
+                           BorderColor="Transparent">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToSearchCommand}" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="🔍"
+                                   FontSize="24" />
+                            <Label Text="Find Parks"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+                            <Label Text="Search nearby trails"
+                                   FontSize="11"
+                                   TextColor="#A8C4B8" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- My Passport -->
+                    <Frame Grid.Column="1"
+                           BackgroundColor="#C8A96E"
+                           CornerRadius="12"
+                           Padding="16"
+                           HasShadow="False"
+                           BorderColor="Transparent">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToPassportCommand}" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="📖"
+                                   FontSize="24" />
+                            <Label Text="My Passport"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+                            <Label Text="View your stamps"
+                                   FontSize="11"
+                                   TextColor="#F5E6C8" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                </Grid>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>
