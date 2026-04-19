@@ -10,6 +10,7 @@ public class PassportStamp
     public string StampImageUrl { get; set; } = string.Empty;
     public bool IsVisited { get; set; }
     public bool IsNotVisited => !IsVisited;
+    public double StampOpacity => IsVisited ? 1.0 : 0.35;
 }
 
 public class PassportViewModel : INotifyPropertyChanged
@@ -27,32 +28,29 @@ public class PassportViewModel : INotifyPropertyChanged
 
     private void LoadStamps()
     {
-        // TODO: replace with real service call
-        // var stamps = await _parkService.GetPassportStampsAsync();
-
-        var parks = new List<(string Name, bool Visited)>
+        var parks = new List<(string Name, string StampImage, bool Visited)>
         {
-            ("Cuyahoga Valley",      true),
-            ("Hocking Hills",        true),
-            ("Wayne National Forest",true),
-            ("Salt Fork",            true),
-            ("Caesar Creek",         true),
-            ("Hueston Woods",        true),
-            ("Shawnee State",        false),
-            ("Zaleski State",        false),
-            ("Tar Hollow",           false),
-            ("Mohican State",        false),
-            ("Malabar Farm",         false),
-            ("Nelson Kennedy Ledges",false),
+            ("Cuyahoga Valley",       "cuyahoga.png",      true),
+            ("Hocking Hills",         "hockinghills.png",  true),
+            ("Wayne National Forest", "wayne.png",         true),
+            ("Salt Fork",             "saltfork.png",      true),
+            ("Caesar Creek",          "casesarcreek.png",  true),
+            ("Hueston Woods",         "huestonwoods.png",  true),
+            ("Shawnee State",         "shawnee.png",       false),
+            ("Zaleski State",         "zaleski.png",       false),
+            ("Tar Hollow",            "tarhollow.png",     false),
+            ("Mohican State",         "mohican.png",       false),
+            ("Malabar Farm",          "malabar.png",       false),
+            ("Nelson Kennedy Ledges", "nelsonkennedy.png", false),
         };
 
-        foreach (var (name, visited) in parks)
+        foreach (var (name, stampImage, visited) in parks)
         {
             Stamps.Add(new PassportStamp
             {
                 ParkName = name,
                 IsVisited = visited,
-                StampImageUrl = visited ? "stamp_placeholder.png" : string.Empty
+                StampImageUrl = stampImage
             });
         }
 

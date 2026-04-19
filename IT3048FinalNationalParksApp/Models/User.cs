@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 
-namespace IT3048FinalNationalParksApp.Models
+namespace IT3048FinalNationalParksApp.Models;
+
+public class User
 {
-    public class User
-    {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; } // Note: hash passwords.
-    }
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Username { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; } // Note: hash passwords.
 }
