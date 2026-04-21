@@ -13,6 +13,10 @@ public class Park
 
     [JsonProperty("fullName")]
     public string FullName { get; set; }
+    [JsonProperty("description")]
+    public string Description { get; set; }
+    [JsonProperty("states")]
+    public string States { get; set; }
     public List<ParkImage> Images { get; set; }
     public List<ParkLocation> Addresses { get; set; }
 }
@@ -25,11 +29,11 @@ public class ParkImage
     public string Url { get; set; }
 }
 
-public class ParkLocation { 
-    //[JsonProperty("line1")]
-    //public string AddressLine1 { get; set; }
-    //[JsonProperty("city")]
-    //public string City { get; set; }
+public class ParkLocation {
+    [JsonProperty("line1")]
+    public string AddressLine1 { get; set; }
+    [JsonProperty("city")]
+    public string City { get; set; }
     [JsonProperty("stateCode")]
     public string StateCode { get; set; }
 

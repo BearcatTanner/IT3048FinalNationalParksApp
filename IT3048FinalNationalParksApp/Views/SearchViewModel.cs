@@ -106,15 +106,22 @@ public class SearchViewModel : INotifyPropertyChanged
             {
                 var inResponse = await api.GETParksQueryIN(q);
                 var returnedParks = inResponse.Data.ToList();
-               
-                    foreach (var p in returnedParks)
+                var stateNote= string.Empty;
+
+                foreach (var p in returnedParks)
                     {
+                    if (p.States.Contains(","))
+                    {
+                        stateNote = " ** This park is located in multiple states: " + p.States;
+                    }
                     results.Add(new ParkResult
                     {
                         ParkName = p.FullName ?? string.Empty,
                         ImageUrl = p.Images != null && p.Images.Count > 0 ? p.Images[0].Url ?? string.Empty : string.Empty,
                         ImageAltText = p.Images != null && p.Images.Count > 0 ? p.Images[0].AltText ?? string.Empty : string.Empty,
-                        Location = p.Addresses != null && p.Addresses.Count > 0 ? p.Addresses[0].StateCode ?? string.Empty : string.Empty,
+                        Location = p.Addresses != null && p.Addresses.Count > 0 ? p.Addresses[0].AddressLine1 + 
+                        " " + p.Addresses[0].City + ", " + p.Addresses[0].StateCode + stateNote ?? string.Empty : string.Empty,
+                        Description = p.Description ?? string.Empty
                     });
                     }
                 }
@@ -123,36 +130,48 @@ public class SearchViewModel : INotifyPropertyChanged
             if (OHSelected)
             {
                 var ohResponse = await api.GETParksQueryOH(q);
-                if (ohResponse != null)
+                var returnedParks = ohResponse.Data.ToList();
+                var stateNote = string.Empty;
+
+                foreach (var p in returnedParks)
                 {
-                    //foreach (var p in ohResponse.data)
-                    //{
-                    //    results.Add(new ParkResult
-                    //    {
-                    //        ParkName = p.fullName ?? string.Empty,
-                    //        Location = p.states ?? string.Empty,
-                    //        Description = p.description ?? string.Empty,
-                    //        ImageUrl = p.images != null && p.images.Count > 0 ? p.images[0].url ?? string.Empty : string.Empty
-                    //    });
-                    //}
+                    if (p.States.Contains(","))
+                    {
+                        stateNote = " ** This park is located in multiple states: " + p.States;
+                    }
+                    results.Add(new ParkResult
+                    {
+                        ParkName = p.FullName ?? string.Empty,
+                        ImageUrl = p.Images != null && p.Images.Count > 0 ? p.Images[0].Url ?? string.Empty : string.Empty,
+                        ImageAltText = p.Images != null && p.Images.Count > 0 ? p.Images[0].AltText ?? string.Empty : string.Empty,
+                        Location = p.Addresses != null && p.Addresses.Count > 0 ? p.Addresses[0].AddressLine1 +
+                        " " + p.Addresses[0].City + ", " + p.Addresses[0].StateCode + stateNote ?? string.Empty : string.Empty,
+                        Description = p.Description ?? string.Empty
+                    });
                 }
             }
 
             if (KYSelected)
             {
                 var kyResponse = await api.GETParksQueryKY(q);
-                if (kyResponse != null)
+                var returnedParks = kyResponse.Data.ToList();
+                var stateNote = string.Empty;
+
+                foreach (var p in returnedParks)
                 {
-                    //foreach (var p in kyResponse.data)
-                    //{
-                    //    results.Add(new ParkResult
-                    //    {
-                    //        ParkName = p.fullName ?? string.Empty,
-                    //        Location = p.states ?? string.Empty,
-                    //        Description = p.description ?? string.Empty,
-                    //        ImageUrl = p.images != null && p.images.Count > 0 ? p.images[0].url ?? string.Empty : string.Empty
-                    //    });
-                    //}
+                    if (p.States.Contains(","))
+                    {
+                        stateNote = " ** This park is located in multiple states: " + p.States;
+                    }
+                    results.Add(new ParkResult
+                    {
+                        ParkName = p.FullName ?? string.Empty,
+                        ImageUrl = p.Images != null && p.Images.Count > 0 ? p.Images[0].Url ?? string.Empty : string.Empty,
+                        ImageAltText = p.Images != null && p.Images.Count > 0 ? p.Images[0].AltText ?? string.Empty : string.Empty,
+                        Location = p.Addresses != null && p.Addresses.Count > 0 ? p.Addresses[0].AddressLine1 +
+                        " " + p.Addresses[0].City + ", " + p.Addresses[0].StateCode + stateNote ?? string.Empty : string.Empty,
+                        Description = p.Description ?? string.Empty
+                    });
                 }
             }
 

@@ -15,7 +15,7 @@
                Margin="4,0,0,0" />
     </Shell.TitleView>
 
-    <Grid RowDefinitions="Auto,Auto,*">
+    <Grid RowDefinitions="Auto,Auto, Auto, *">
 
         <!-- Sub-header -->
         <VerticalStackLayout Grid.Row="0"
@@ -29,7 +29,7 @@
 
         <!-- Search Bar -->
         <Grid Grid.Row="1"
-              Padding="20,12,20,12"
+              Padding="20,12,20,0"
               ColumnDefinitions="*,Auto, Auto"
               ColumnSpacing="10"
               BackgroundColor="#F5F0E8">
@@ -60,19 +60,20 @@
                     TextColor="White"
                     FontSize="22"
                     Padding="0" />
-            <HorizontalStackLayout Grid.Column="2" >
-                <Label Text="OH" TextColor="#1B3A2D" VerticalOptions="Center"/>
-                <CheckBox x:Name="CheckOH" IsChecked="{Binding OHSelected, Mode=TwoWay}"/>
-                <Label Text="KY" TextColor="#1B3A2D" VerticalOptions="Center"/>
-                <CheckBox x:Name="CheckKY" IsChecked="{Binding KYSelected, Mode=TwoWay}" />
-                <Label Text="IN" TextColor="#1B3A2D" VerticalOptions="Center"/>
-                <CheckBox x:Name="CheckIN" IsChecked="{Binding INSelected, Mode=TwoWay}"/>
-            </HorizontalStackLayout>
+            
             
         </Grid>
+        <HorizontalStackLayout Grid.Column="2" Grid.Row="2" HorizontalOptions="Center">
+            <Label Text="OH" TextColor="#1B3A2D" VerticalOptions="Center"/>
+            <CheckBox x:Name="CheckOH"  Color="#1b3a2d" IsChecked="{Binding OHSelected, Mode=TwoWay}"/>
+            <Label Text="KY" TextColor="#1B3A2D" VerticalOptions="Center"/>
+            <CheckBox x:Name="CheckKY" Color="#1b3a2d" IsChecked="{Binding KYSelected, Mode=TwoWay}" />
+            <Label Text="IN" TextColor="#1B3A2D" VerticalOptions="Center"/>
+            <CheckBox x:Name="CheckIN" Color="#1b3a2d" IsChecked="{Binding INSelected, Mode=TwoWay}"/>
+        </HorizontalStackLayout>
 
         <!-- Results / States -->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
 
             <!-- Loading -->
             <ActivityIndicator IsRunning="{Binding IsLoading}"
@@ -163,7 +164,7 @@
                                                FontSize="12"
                                                TextColor="#9E9E9E"
                                                LineBreakMode="TailTruncation"
-                                               MaxLines="2"
+                                               MaxLines="1"
                                                Margin="0,2,0,0" />
                                     </VerticalStackLayout>
 
