@@ -30,7 +30,7 @@
         <!-- Search Bar -->
         <Grid Grid.Row="1"
               Padding="20,12,20,12"
-              ColumnDefinitions="*,Auto"
+              ColumnDefinitions="*,Auto, Auto"
               ColumnSpacing="10"
               BackgroundColor="#F5F0E8">
 
@@ -60,6 +60,15 @@
                     TextColor="White"
                     FontSize="22"
                     Padding="0" />
+            <HorizontalStackLayout Grid.Column="2" >
+                <Label Text="OH" TextColor="#1B3A2D" VerticalOptions="Center"/>
+                <CheckBox x:Name="CheckOH" IsChecked="{Binding OHSelected, Mode=TwoWay}"/>
+                <Label Text="KY" TextColor="#1B3A2D" VerticalOptions="Center"/>
+                <CheckBox x:Name="CheckKY" IsChecked="{Binding KYSelected, Mode=TwoWay}" />
+                <Label Text="IN" TextColor="#1B3A2D" VerticalOptions="Center"/>
+                <CheckBox x:Name="CheckIN" IsChecked="{Binding INSelected, Mode=TwoWay}"/>
+            </HorizontalStackLayout>
+            
         </Grid>
 
         <!-- Results / States -->
@@ -125,9 +134,17 @@
                                       HeightRequest="90">
 
                                     <!-- Park image / placeholder -->
-                                    <BoxView Grid.Column="0"
+                                    <!--<BoxView Grid.Column="0"
                                              Color="#1B3A2D"
-                                             WidthRequest="90" />
+                                             WidthRequest="90" 
+                                             />-->
+                                    <Image Grid.Column="0"
+                                           Source="{Binding ImageUrl}"
+                                           ToolTipProperties.Text="{Binding ImageAltText}"
+                                           Aspect="AspectFill"
+                                           WidthRequest="90"
+                                           HeightRequest="90"
+                                           Clip="EllipseGeometry Center='45,45' RadiusX='45' RadiusY='45'"/>
 
                                     <!-- Park info -->
                                     <VerticalStackLayout Grid.Column="1"
