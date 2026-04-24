@@ -12,7 +12,7 @@ namespace IT3048FinalNationalParksApp
             // Auth pages are routes, not tabs — so they never show the tab bar
             Routing.RegisterRoute("SignUpPage", typeof(SignUpPage));
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
-            Routing.RegisterRoute("ParkDetailsPage", typeof(ParkDetailsPage));
+            Routing.RegisterRoute("EditProfilePage", typeof(EditProfilePage));
         }
     }
 }

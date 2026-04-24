@@ -83,18 +83,17 @@
                                                             CommandParameter="{Binding .}" />
                                     </Frame.GestureRecognizers>
                                     <Grid>
-                                        <!-- Visited -->
                                         <Image Source="{Binding StampImageUrl}"
                                                Aspect="AspectFill"
-                                               IsVisible="{Binding IsVisited}" />
+                                               Opacity="{Binding StampOpacity}" />
 
-                                        <!-- Not visited -->
-                                        <BoxView Color="#E8E3DA"
+                                        <BoxView Color="#F5F0E8"
                                                  IsVisible="{Binding IsNotVisited}"
+                                                 Opacity="0.35"
                                                  CornerRadius="43" />
                                         <Label Text="?"
                                                FontSize="28"
-                                               TextColor="#BBBBBB"
+                                               TextColor="#9E9E9E"
                                                HorizontalOptions="Center"
                                                VerticalOptions="Center"
                                                IsVisible="{Binding IsNotVisited}" />
