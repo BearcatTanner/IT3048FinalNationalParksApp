@@ -28,7 +28,7 @@ public class PassportViewModel : INotifyPropertyChanged
 
     private void LoadStamps()
     {
-        var parks = new List<(string Name, string StampImage, bool Visited)>
+        var parks = new List<(string Name, string StampImage, bool IsVisited)>
         {
             ("Cuyahoga Valley",       "cuyahoga.png",      true),
             ("Hocking Hills",         "hockinghills.png",  true),
@@ -44,12 +44,12 @@ public class PassportViewModel : INotifyPropertyChanged
             ("Nelson Kennedy Ledges", "nelsonkennedy.png", false),
         };
 
-        foreach (var (name, stampImage, visited) in parks)
+        foreach (var (name, stampImage, isVisited) in parks)
         {
             Stamps.Add(new PassportStamp
             {
                 ParkName = name,
-                IsVisited = visited,
+                IsVisited = isVisited,
                 StampImageUrl = stampImage
             });
         }

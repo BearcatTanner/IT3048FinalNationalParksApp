@@ -23,6 +23,7 @@ namespace IT3048FinalNationalParksApp
                 });
 
             builder.Services.AddSingleton<DatabaseService>();
+            builder.Services.AddTransient<LogInViewModel>();
             builder.Services.AddTransient<SignUpPage>();
             builder.Services.AddTransient<LoginPage>();
 

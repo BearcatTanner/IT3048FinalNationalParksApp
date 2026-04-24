@@ -24,39 +24,38 @@ public class DatabaseService
         await _database.CreateTableAsync<User>();
     }
 
-        private string HashPassword(string password)
-        {
-            using var sha256 = SHA256.Create();
-            var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            return Convert.ToBase64String(bytes);
-        }
+    private string HashPassword(string password)
+    {
+        using var sha256 = SHA256.Create();
+        var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+        return Convert.ToBase64String(bytes);
+    }
 
-        public async Task<int> RegisterUser(User user)
-        {
-            await Init();
-            return await _database.InsertAsync(user);
-        }
+    public async Task<int> RegisterUser(User user)
+    {
+        await Init();
+        return await _database.InsertAsync(user);
+    }
 
-        public async Task<User> GetUser(string username, string password)
-        {
-            await Init();
-            return await _database.Table<User>()
-                .Where(u => u.Username == username && u.Password == password)
-                .FirstOrDefaultAsync();
-        }
+    public async Task<User> GetUser(string username, string password)
+    {
+        await Init();
+        return await _database.Table<User>()
+            .Where(u => u.Username == username && u.Password == password)
+            .FirstOrDefaultAsync();
+    }
 
-        public async Task<int> UpdateUser(User user)
-        {
-            await Init();
-            return await _database.UpdateAsync(user);
-        }
+    public async Task<int> UpdateUser(User user)
+    {
+        await Init();
+        return await _database.UpdateAsync(user);
+    }
 
-        public async Task<User> GetUserByUsername(string username)
-        {
-            await Init();
-            return await _database.Table<User>()
-                .Where(u => u.Username == username)
-                .FirstOrDefaultAsync();
-        }
+    public async Task<User> GetUserByUsername(string username)
+    {
+        await Init();
+        return await _database.Table<User>()
+            .Where(u => u.Username == username)
+            .FirstOrDefaultAsync();
     }
 }
