@@ -1,150 +1,337 @@
-﻿
-namespace IT3048FinalNationalParksApp.Models;
+﻿// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+using Newtonsoft.Json;
+using System.Text.Json;
 
-internal class Parks
+public class Parks
 {
-    public class Activity
-    {
-        public string id { get; set; }
-        public string name { get; set; }
-    }
+    [JsonProperty("data")]
+    public List<Park> Data { get; set; }
+}
 
-    public class Address
-    {
-        public string postalCode { get; set; }
-        public string city { get; set; }
-        public string stateCode { get; set; }
-        public string countryCode { get; set; }
-        public string provinceTerritoryCode { get; set; }
-        public string line1 { get; set; }
-        public string type { get; set; }
-        public string line3 { get; set; }
-        public string line2 { get; set; }
-    }
+public class Park
+{
 
-    public class Contacts
-    {
-        public List<PhoneNumber> phoneNumbers { get; set; }
-        public List<EmailAddress> emailAddresses { get; set; }
-    }
+    [JsonProperty("fullName")]
+    public string FullName { get; set; }
+    [JsonProperty("description")]
+    public string Description { get; set; }
+    [JsonProperty("states")]
+    public string States { get; set; }
+    public List<ParkImage> Images { get; set; }
+    public List<ParkLocation> Addresses { get; set; }
+}
 
-    public class Datum
-    {
-        public string id { get; set; }
-        public string url { get; set; }
-        public string fullName { get; set; }
-        public string parkCode { get; set; }
-        public string description { get; set; }
-        public string latitude { get; set; }
-        public string longitude { get; set; }
-        public string latLong { get; set; }
-        public List<Activity> activities { get; set; }
-        public List<Topic> topics { get; set; }
-        public string states { get; set; }
-        public Contacts contacts { get; set; }
-        public List<EntranceFee> entranceFees { get; set; }
-        public List<EntrancePass> entrancePasses { get; set; }
-        public List<object> fees { get; set; }
-        public string directionsInfo { get; set; }
-        public string directionsUrl { get; set; }
-        public List<OperatingHour> operatingHours { get; set; }
-        public List<Address> addresses { get; set; }
-        public List<Image> images { get; set; }
-        public string weatherInfo { get; set; }
-        public string name { get; set; }
-        public string designation { get; set; }
-        public List<object> multimedia { get; set; }
-        public int relevanceScore { get; set; }
-    }
+public class ParkImage
+{
+    [JsonProperty("altText")]
+    public string AltText { get; set; }
+    [JsonProperty("url")]
+    public string Url { get; set; }
+}
 
-    public class EmailAddress
-    {
-        public string description { get; set; }
-        public string emailAddress { get; set; }
-    }
-
-    public class EntranceFee
-    {
-        public string cost { get; set; }
-        public string description { get; set; }
-        public string title { get; set; }
-    }
-
-    public class EntrancePass
-    {
-        public string cost { get; set; }
-        public string description { get; set; }
-        public string title { get; set; }
-    }
-
-    public class Exception
-    {
-        public ExceptionHours exceptionHours { get; set; }
-        public string startDate { get; set; }
-        public string name { get; set; }
-        public string endDate { get; set; }
-    }
-
-    public class ExceptionHours
-    {
-        public string wednesday { get; set; }
-        public string monday { get; set; }
-        public string thursday { get; set; }
-        public string sunday { get; set; }
-        public string tuesday { get; set; }
-        public string friday { get; set; }
-        public string saturday { get; set; }
-    }
-
-    public class Image
-    {
-        public string credit { get; set; }
-        public string title { get; set; }
-        public string altText { get; set; }
-        public string caption { get; set; }
-        public string url { get; set; }
-    }
-
-    public class OperatingHour
-    {
-        public List<Exception> exceptions { get; set; }
-        public string description { get; set; }
-        public StandardHours standardHours { get; set; }
-        public string name { get; set; }
-    }
-
-    public class PhoneNumber
-    {
-        public string phoneNumber { get; set; }
-        public string description { get; set; }
-        public string extension { get; set; }
-        public string type { get; set; }
-    }
-
-    public class Root
-    {
-        public string total { get; set; }
-        public string limit { get; set; }
-        public string start { get; set; }
-        public List<Datum> data { get; set; }
-    }
-
-    public class StandardHours
-    {
-        public string wednesday { get; set; }
-        public string monday { get; set; }
-        public string thursday { get; set; }
-        public string sunday { get; set; }
-        public string tuesday { get; set; }
-        public string friday { get; set; }
-        public string saturday { get; set; }
-    }
-
-    public class Topic
-    {
-        public string id { get; set; }
-        public string name { get; set; }
-    }
-
+public class ParkLocation {
+    [JsonProperty("line1")]
+    public string AddressLine1 { get; set; }
+    [JsonProperty("city")]
+    public string City { get; set; }
+    [JsonProperty("stateCode")]
+    public string StateCode { get; set; }
 
 }
+
+//public class Parks
+//{
+//    public class Activity
+//    {
+//        [JsonProperty("id")]
+//        public string Id { get; set; }
+
+//        [JsonProperty("name")]
+//        public string Name { get; set; }
+//    }
+
+//    public class Address
+//    {
+//        [JsonProperty("postalCode")]
+//        public string PostalCode { get; set; }
+
+//        [JsonProperty("city")]
+//        public string City { get; set; }
+
+//        [JsonProperty("stateCode")]
+//        public string StateCode { get; set; }
+
+//        [JsonProperty("countryCode")]
+//        public string CountryCode { get; set; }
+
+//        [JsonProperty("provinceTerritoryCode")]
+//        public string ProvinceTerritoryCode { get; set; }
+
+//        [JsonProperty("line1")]
+//        public string Line1 { get; set; }
+
+//        [JsonProperty("type")]
+//        public string Type { get; set; }
+
+//        [JsonProperty("line3")]
+//        public string Line3 { get; set; }
+
+//        [JsonProperty("line2")]
+//        public string Line2 { get; set; }
+//    }
+
+//    public class Contacts
+//    {
+//        [JsonProperty("phoneNumbers")]
+//        public List<PhoneNumber> PhoneNumbers { get; set; }
+
+//        [JsonProperty("emailAddresses")]
+//        public List<EmailAddress> EmailAddresses { get; set; }
+//    }
+
+//    public class Data
+//    {
+//        [JsonProperty("id")]
+//        public string Id { get; set; }
+
+//        [JsonProperty("url")]
+//        public string Url { get; set; }
+
+//        [JsonProperty("fullName")]
+//        public string FullName { get; set; }
+
+//        [JsonProperty("parkCode")]
+//        public string ParkCode { get; set; }
+
+//        [JsonProperty("description")]
+//        public string Description { get; set; }
+
+//        [JsonProperty("latitude")]
+//        public string Latitude { get; set; }
+
+//        [JsonProperty("longitude")]
+//        public string Longitude { get; set; }
+
+//        [JsonProperty("latLong")]
+//        public string LatLong { get; set; }
+
+//        [JsonProperty("activities")]
+//        public List<Activity> Activities { get; set; }
+
+//        [JsonProperty("topics")]
+//        public List<Topic> Topics { get; set; }
+
+//        [JsonProperty("states")]
+//        public string States { get; set; }
+
+//        [JsonProperty("contacts")]
+//        public Contacts Contacts { get; set; }
+
+//        [JsonProperty("entranceFees")]
+//        public List<EntranceFee> EntranceFees { get; set; }
+
+//        [JsonProperty("entrancePasses")]
+//        public List<EntrancePass> EntrancePasses { get; set; }
+
+//        [JsonProperty("fees")]
+//        public List<object> Fees { get; set; }
+
+//        [JsonProperty("directionsInfo")]
+//        public string DirectionsInfo { get; set; }
+
+//        [JsonProperty("directionsUrl")]
+//        public string DirectionsUrl { get; set; }
+
+//        [JsonProperty("operatingHours")]
+//        public List<OperatingHour> OperatingHours { get; set; }
+
+//        [JsonProperty("addresses")]
+//        public List<Address> Addresses { get; set; }
+
+//        [JsonProperty("images")]
+//        public List<Image> Images { get; set; }
+
+//        [JsonProperty("weatherInfo")]
+//        public string WeatherInfo { get; set; }
+
+//        [JsonProperty("name")]
+//        public string Name { get; set; }
+
+//        [JsonProperty("designation")]
+//        public string Designation { get; set; }
+
+//        [JsonProperty("multimedia")]
+//        public List<object> Multimedia { get; set; }
+
+//        [JsonProperty("relevanceScore")]
+//        public int RelevanceScore { get; set; }
+//    }
+
+//    public class EmailAddress
+//    {
+//        [JsonProperty("description")]
+//        public string Description { get; set; }
+
+//        [JsonProperty("emailAddress")]
+//        public string ParkEmailAddress { get; set; }
+//    }
+
+//    public class EntranceFee
+//    {
+//        [JsonProperty("cost")]
+//        public string Cost { get; set; }
+
+//        [JsonProperty("description")]
+//        public string Description { get; set; }
+
+//        [JsonProperty("title")]
+//        public string Title { get; set; }
+//    }
+
+//    public class EntrancePass
+//    {
+//        [JsonProperty("cost")]
+//        public string Cost { get; set; }
+
+//        [JsonProperty("description")]
+//        public string Description { get; set; }
+
+//        [JsonProperty("title")]
+//        public string Title { get; set; }
+//    }
+
+//    public class Exception
+//    {
+//        [JsonProperty("exceptionHours")]
+//        public ExceptionHours ExceptionHours { get; set; }
+
+//        [JsonProperty("startDate")]
+//        public string StartDate { get; set; }
+
+//        [JsonProperty("name")]
+//        public string Name { get; set; }
+
+//        [JsonProperty("endDate")]
+//        public string EndDate { get; set; }
+//    }
+
+//    public class ExceptionHours
+//    {
+//        [JsonProperty("wednesday")]
+//        public string Wednesday { get; set; }
+
+//        [JsonProperty("monday")]
+//        public string Monday { get; set; }
+
+//        [JsonProperty("thursday")]
+//        public string Thursday { get; set; }
+
+//        [JsonProperty("sunday")]
+//        public string Sunday { get; set; }
+
+//        [JsonProperty("tuesday")]
+//        public string Tuesday { get; set; }
+
+//        [JsonProperty("friday")]
+//        public string Friday { get; set; }
+
+//        [JsonProperty("saturday")]
+//        public string Saturday { get; set; }
+//    }
+
+//    public class Image
+//    {
+//        [JsonProperty("credit")]
+//        public string Credit { get; set; }
+
+//        [JsonProperty("title")]
+//        public string Title { get; set; }
+
+//        [JsonProperty("altText")]
+//        public string AltText { get; set; }
+
+//        [JsonProperty("caption")]
+//        public string Caption { get; set; }
+
+//        [JsonProperty("url")]
+//        public string Url { get; set; }
+//    }
+
+//    public class OperatingHour
+//    {
+//        [JsonProperty("exceptions")]
+//        public List<Exception> Exceptions { get; set; }
+
+//        [JsonProperty("description")]
+//        public string Description { get; set; }
+
+//        [JsonProperty("standardHours")]
+//        public StandardHours StandardHours { get; set; }
+
+//        [JsonProperty("name")]
+//        public string Name { get; set; }
+//    }
+
+//    public class PhoneNumber
+//    {
+//        [JsonProperty("phoneNumber")]
+//        public string ParkPhoneNumber { get; set; }
+
+//        [JsonProperty("description")]
+//        public string Description { get; set; }
+
+//        [JsonProperty("extension")]
+//        public string Extension { get; set; }
+
+//        [JsonProperty("type")]
+//        public string Type { get; set; }
+//    }
+
+//    public class Root
+//    {
+//        [JsonProperty("total")]
+//        public string Total { get; set; }
+
+//        [JsonProperty("limit")]
+//        public string Limit { get; set; }
+
+//        [JsonProperty("start")]
+//        public string Start { get; set; }
+
+//        [JsonProperty("data")]
+//        public List<Data> Data { get; set; }
+//    }
+
+//    public class StandardHours
+//    {
+//        [JsonProperty("wednesday")]
+//        public string Wednesday { get; set; }
+
+//        [JsonProperty("monday")]
+//        public string Monday { get; set; }
+
+//        [JsonProperty("thursday")]
+//        public string Thursday { get; set; }
+
+//        [JsonProperty("sunday")]
+//        public string Sunday { get; set; }
+
+//        [JsonProperty("tuesday")]
+//        public string Tuesday { get; set; }
+
+//        [JsonProperty("friday")]
+//        public string Friday { get; set; }
+
+//        [JsonProperty("saturday")]
+//        public string Saturday { get; set; }
+//    }
+
+//    public class Topic
+//    {
+//        [JsonProperty("id")]
+//        public string Id { get; set; }
+
+//        [JsonProperty("name")]
+//        public string Name { get; set; }
+//    }
+//}

@@ -41,7 +41,7 @@ namespace IT3048FinalNationalParksApp.Services
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync
-                ($"https://developer.nps.gov/api/v1/parks?stateCode=IN&" +
+                ($"https://developer.nps.gov/api/v1/parks?stateCode=KY&" +
                 $"&api_key=tanbDLVroQ7S3zgYdIiTSD0XvXJFFapIGmghgRzK");
             return JsonConvert.DeserializeObject<Parks>(response);
         }
@@ -49,7 +49,7 @@ namespace IT3048FinalNationalParksApp.Services
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync
-                ($"https://developer.nps.gov/api/v1/parks?stateCode=IN&q=" +
+                ($"https://developer.nps.gov/api/v1/parks?stateCode=KY&q=" +
                 $"{query}&api_key=tanbDLVroQ7S3zgYdIiTSD0XvXJFFapIGmghgRzK");
             return JsonConvert.DeserializeObject<Parks>(response);
         }
