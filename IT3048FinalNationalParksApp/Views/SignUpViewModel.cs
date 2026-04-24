@@ -3,11 +3,13 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using IT3048FinalNationalParksApp.Services;
 using Microsoft.Maui.Controls;
+using IT3048FinalNationalParksApp.Models;
 
 namespace IT3048FinalNationalParksApp.Views;
 
 public partial class SignUpViewModel : INotifyPropertyChanged
 {
+    private readonly DatabaseService _dbService;
     private string _firstname = string.Empty;
     private string _lastname = string.Empty;
     private string _username = string.Empty;
@@ -63,8 +65,9 @@ public partial class SignUpViewModel : INotifyPropertyChanged
     public ICommand SignUpCommand { get; }
     public ICommand GoToLoginCommand { get; }
 
-    public SignUpViewModel()
+    public SignUpViewModel(DatabaseService dbService)
     {
+        _dbService = dbService;
         SignUpCommand = new Command(async () => await OnSignUpAsync());
         GoToLoginCommand = new Command(async () =>
             await Shell.Current.GoToAsync("LoginPage"));
@@ -102,6 +105,31 @@ public partial class SignUpViewModel : INotifyPropertyChanged
         {
             ErrorMessage = "Passwords do not match.";
             return;
+        }
+
+        // Create the User object for the database
+        var newUser = new User
+        {
+            FirstName = Firstname,
+            LastName = Lastname,
+            Username = Username,
+            Email = Email,
+            Password = Password // Note: Consider hashing this for security
+        };
+
+        // Save to Database
+        int result = await _dbService.RegisterUser(newUser);
+
+        if (result > 0)
+        {
+            // Save to Preferences for the current session
+            UserService.SaveUser(firstName: Firstname, lastName: Lastname, username: Username, email: Email, memberSince: DateTime.UtcNow);
+
+            await Shell.Current.GoToAsync("//Home");
+        }
+        else
+        {
+            ErrorMessage = "Registration failed. Please try again.";
         }
 
         // TODO: replace with real registration service call

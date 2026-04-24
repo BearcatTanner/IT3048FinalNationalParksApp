@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IT3048FinalNationalParksApp.MainApp.EditProfilePage"
+             Title="Edit Profile"
+             BackgroundColor="#F5F0E8">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Edit Your Details" FontSize="24" FontAttributes="Bold" TextColor="#1B3A2D" />
+
+        <Entry Placeholder="First Name" Text="{Binding FirstName}" />
+        <Entry Placeholder="Last Name" Text="{Binding LastName}" />
+        <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email" />
+
+        <Button Text="Save Changes" 
+                Command="{Binding SaveCommand}"
+                BackgroundColor="#1B3A2D"
+                TextColor="White"
+                Margin="0,20,0,0" />
+    </VerticalStackLayout>
+</ContentPage>

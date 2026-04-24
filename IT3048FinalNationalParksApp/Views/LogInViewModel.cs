@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using IT3048FinalNationalParksApp.Services; 
 
 namespace IT3048FinalNationalParksApp.Views;
 
 public partial class LogInViewModel : INotifyPropertyChanged
 {
+    private readonly DatabaseService _dbService;
     private string _username = string.Empty;
     private string _password = string.Empty;
     private string _errorMessage = string.Empty;
@@ -33,8 +35,9 @@ public partial class LogInViewModel : INotifyPropertyChanged
     public ICommand LoginCommand { get; }
     public ICommand GoToSignUpCommand { get; }
 
-    public LogInViewModel()
+    public LogInViewModel(DatabaseService dbService) 
     {
+        _dbService = dbService;
         LoginCommand = new Command(async () => await OnLoginAsync());
         GoToSignUpCommand = new Command(async () =>
             await Shell.Current.GoToAsync("SignUpPage"));
@@ -50,13 +53,14 @@ public partial class LogInViewModel : INotifyPropertyChanged
             return;
         }
 
-        // TODO: replace with real auth service call
-        // bool success = await _authService.LoginAsync(Username, Password);
+        // Query the database
+        var user = await _dbService.GetUser(Username, Password);
 
-        bool success = true; // remove when wired to real service
-
-        if (success)
+        if (user != null)
         {
+            // Save session data to Preferences
+            UserService.SaveUser(user.FirstName, user.LastName, user.Username, user.Email);
+
             await Shell.Current.GoToAsync("//Home");
         }
         else

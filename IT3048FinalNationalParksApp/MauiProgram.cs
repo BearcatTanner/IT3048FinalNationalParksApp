@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using IT3048FinalNationalParksApp.Auth;
 using IT3048FinalNationalParksApp.Services;
+using IT3048FinalNationalParksApp.Views;
 using Microsoft.Extensions.Logging;
+using IT3048FinalNationalParksApp.MainApp;
 
 namespace IT3048FinalNationalParksApp
 {
@@ -27,7 +29,6 @@ namespace IT3048FinalNationalParksApp
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-
             return builder.Build();
         }
     }
