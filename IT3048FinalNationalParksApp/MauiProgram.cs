@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using IT3048FinalNationalParksApp.Auth;
 using IT3048FinalNationalParksApp.Services;
-using IT3048FinalNationalParksApp.Views; 
+using IT3048FinalNationalParksApp.Views;
 using Microsoft.Extensions.Logging;
+using IT3048FinalNationalParksApp.MainApp;
 
 namespace IT3048FinalNationalParksApp
 {
@@ -26,10 +27,14 @@ namespace IT3048FinalNationalParksApp
             // Register ViewModels
             builder.Services.AddTransient<SignUpViewModel>();
             builder.Services.AddTransient<LogInViewModel>();
+            builder.Services.AddTransient<ProfileViewModel>();
+            builder.Services.AddTransient<EditProfileViewModel>();
 
             // Register Pages
             builder.Services.AddTransient<SignUpPage>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<ProfilePage>();     
+            builder.Services.AddTransient<EditProfilePage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
