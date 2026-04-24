@@ -1,12 +1,12 @@
-using IT3048FinalNationalParksApp.Views;
-
 namespace IT3048FinalNationalParksApp.Auth;
+
+using IT3048FinalNationalParksApp.Views;
 
 public partial class LoginPage : ContentPage
 {
-    public LoginPage()
+    public LoginPage(LogInViewModel viewModel) 
     {
         InitializeComponent();
-        BindingContext = new LogInViewModel();
+        BindingContext = viewModel;
     }
 }
