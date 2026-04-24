@@ -12,6 +12,7 @@ namespace IT3048FinalNationalParksApp
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
@@ -21,20 +22,9 @@ namespace IT3048FinalNationalParksApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            // Register Services
             builder.Services.AddSingleton<DatabaseService>();
-
-            // Register ViewModels
-            builder.Services.AddTransient<SignUpViewModel>();
-            builder.Services.AddTransient<LogInViewModel>();
-            builder.Services.AddTransient<ProfileViewModel>();
-            builder.Services.AddTransient<EditProfileViewModel>();
-
-            // Register Pages
             builder.Services.AddTransient<SignUpPage>();
             builder.Services.AddTransient<LoginPage>();
-            builder.Services.AddTransient<ProfilePage>();     
-            builder.Services.AddTransient<EditProfilePage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
