@@ -231,10 +231,17 @@ public class SearchViewModel : INotifyPropertyChanged
         //}
     }
 
-    private void OnParkSelected(ParkResult park)
+    private async void OnParkSelected(ParkResult park)
     {
-        // TODO: navigate to park detail page
-        // await Shell.Current.GoToAsync($"ParkDetailPage?parkId={park.ParkId}");
+        if (park == null)
+            return;
+
+        // Navigate to ParkDetailsPage with the selected park details
+        await Shell.Current.Navigation.PushAsync(new IT3048FinalNationalParksApp.MainApp.ParkDetailsPage(
+            park.ParkName,
+            park.Location,
+            park.ImageUrl ?? string.Empty,
+            park.Description ?? string.Empty));
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

@@ -78,6 +78,10 @@
                                        BorderColor="#1B3A2D"
                                        BackgroundColor="White"
                                        HorizontalOptions="Center">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type views:PassportViewModel}}, Path=SelectStampCommand}"
+                                                            CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
                                     <Grid>
                                         <Image Source="{Binding StampImageUrl}"
                                                Aspect="AspectFill"

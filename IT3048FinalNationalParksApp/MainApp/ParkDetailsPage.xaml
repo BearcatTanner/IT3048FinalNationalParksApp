@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:IT3048FinalNationalParksApp.Views"
+             x:Class="IT3048FinalNationalParksApp.MainApp.ParkDetailsPage"
+             Title="Park Details">
+
+    <Shell.TitleView>
+        <Label Text="Park Details"
+               FontSize="20"
+               FontAttributes="Bold"
+               TextColor="#1B3A2D"
+               VerticalOptions="Center"
+               HorizontalOptions="Start"
+               Margin="4,0,0,0" />
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+            <Label Text="{Binding ParkName}" FontSize="22" FontAttributes="Bold" TextColor="#1B3A2D" />
+            <Label Text="{Binding Location}" FontSize="14" TextColor="#666666" />
+            <Image Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="180" />
+            <Label Text="{Binding Description}" FontSize="14" TextColor="#333333" />
+
+            <Button Text="{Binding VisitButtonText}"
+                    Command="{Binding MarkVisitedCommand}"
+                    BackgroundColor="#1B3A2D"
+                    TextColor="White"
+                    CornerRadius="8">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsVisited}" Value="True">
+                        <Setter Property="IsEnabled" Value="False" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
