@@ -1,4 +1,5 @@
 ﻿using IT3048FinalNationalParksApp.Auth;
+using IT3048FinalNationalParksApp.MainApp;
 
 namespace IT3048FinalNationalParksApp
 {
@@ -11,6 +12,7 @@ namespace IT3048FinalNationalParksApp
             // Auth pages are routes, not tabs — so they never show the tab bar
             Routing.RegisterRoute("SignUpPage", typeof(SignUpPage));
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
+            Routing.RegisterRoute("ParkDetailsPage", typeof(ParkDetailsPage));
         }
     }
 }
