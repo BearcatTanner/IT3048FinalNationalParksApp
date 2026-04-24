@@ -35,7 +35,12 @@ public class ProfileViewModel : INotifyPropertyChanged
         LoadFromPreferences();
     }
 
-    private void LoadFromPreferences()
+    private async Task OnEditProfileAsync()
+    {
+        await Shell.Current.GoToAsync("EditProfilePage");
+    }
+
+    public void LoadFromPreferences()
     {
         var (firstName, lastName, username, email, memberSince) = UserService.GetUser();
 
@@ -46,12 +51,6 @@ public class ProfileViewModel : INotifyPropertyChanged
         MemberSince = memberSince;
 
         OnPropertyChanged(nameof(FullName));
-    }
-
-    private async Task OnEditProfileAsync()
-    {
-        // placeholder navigation for future edit page
-        await Shell.Current.GoToAsync("EditProfilePage");
     }
 
     private async Task OnLogoutAsync()
