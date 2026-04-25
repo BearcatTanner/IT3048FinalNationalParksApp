@@ -113,19 +113,6 @@ public class PassportViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(HasNoStamps));
     }
 
-    private async void OnStampSelected(PassportStamp stamp)
-    {
-        if (stamp == null)
-            return;
-
-        // Open ParkDetailsPage
-        await Shell.Current.Navigation.PushAsync(new IT3048FinalNationalParksApp.MainApp.ParkDetailsPage(
-            stamp.ParkName,
-            string.Empty,
-            string.Empty,
-            string.Empty));
-    }
-
     public event PropertyChangedEventHandler? PropertyChanged;
     protected void OnPropertyChanged([CallerMemberName] string? name = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

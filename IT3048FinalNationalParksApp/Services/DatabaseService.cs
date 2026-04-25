@@ -58,4 +58,5 @@ public class DatabaseService
             .Where(u => u.Username == username)
             .FirstOrDefaultAsync();
     }
+}
 

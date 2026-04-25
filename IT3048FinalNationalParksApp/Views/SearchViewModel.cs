@@ -231,17 +231,11 @@ public class SearchViewModel : INotifyPropertyChanged
         //}
     }
 
-    private async void OnParkSelected(ParkResult park)
+    private async Task OnParkSelected(ParkResult park)
     {
-        if (park == null)
-            return;
-
-        // Navigate to ParkDetailsPage with the selected park details
-        await Shell.Current.Navigation.PushAsync(new IT3048FinalNationalParksApp.MainApp.ParkDetailsPage(
-            park.ParkName,
-            park.Location,
-            park.ImageUrl ?? string.Empty,
-            park.Description ?? string.Empty));
+        ParkNavigationContext.SelectedPark = park;
+        ParkNavigationContext.SelectedStamp = null;
+        await Shell.Current.GoToAsync("ParkDetails");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
