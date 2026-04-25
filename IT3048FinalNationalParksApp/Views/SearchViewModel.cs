@@ -82,7 +82,7 @@ public class SearchViewModel : INotifyPropertyChanged
     public SearchViewModel()
     {
         SearchCommand = new Command(async () => await OnSearchAsync());
-        SelectParkCommand = new Command<ParkResult>(OnParkSelected);
+        SelectParkCommand = new Command<ParkResult>(async p => await OnParkSelected(p));
     }
 
     private async Task OnSearchAsync()
@@ -231,10 +231,11 @@ public class SearchViewModel : INotifyPropertyChanged
         //}
     }
 
-    private void OnParkSelected(ParkResult park)
+    private async Task OnParkSelected(ParkResult park)
     {
-        // TODO: navigate to park detail page
-        // await Shell.Current.GoToAsync($"ParkDetailPage?parkId={park.ParkId}");
+        ParkNavigationContext.SelectedPark = park;
+        ParkNavigationContext.SelectedStamp = null;
+        await Shell.Current.GoToAsync("ParkDetails");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
