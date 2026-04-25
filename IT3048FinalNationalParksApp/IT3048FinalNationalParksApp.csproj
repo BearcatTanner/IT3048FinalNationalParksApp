@@ -76,6 +76,9 @@
 	  <MauiXaml Update="MainApp\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MainApp\ParkDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MainApp\PassportPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
