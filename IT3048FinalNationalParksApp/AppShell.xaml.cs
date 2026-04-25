@@ -13,6 +13,8 @@ namespace IT3048FinalNationalParksApp
             Routing.RegisterRoute("SignUpPage", typeof(SignUpPage));
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
             Routing.RegisterRoute("EditProfilePage", typeof(EditProfilePage));
+            Routing.RegisterRoute("ParkDetails", typeof(ParkDetailsPage));
+
         }
     }
 }

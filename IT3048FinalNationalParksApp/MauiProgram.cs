@@ -22,9 +22,20 @@ namespace IT3048FinalNationalParksApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            // 1. Register Data Services
             builder.Services.AddSingleton<DatabaseService>();
+
+            // 2. Register ViewModels 
+            builder.Services.AddTransient<SignUpViewModel>();
+            builder.Services.AddTransient<LogInViewModel>();
+            builder.Services.AddTransient<ProfileViewModel>();
+            builder.Services.AddTransient<EditProfileViewModel>();
+
+            // 3. Register Pages
             builder.Services.AddTransient<SignUpPage>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<ProfilePage>();
+            builder.Services.AddTransient<EditProfilePage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

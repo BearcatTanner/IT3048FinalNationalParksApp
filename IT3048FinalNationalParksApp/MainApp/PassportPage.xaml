@@ -69,7 +69,7 @@
                             <VerticalStackLayout Spacing="6"
                                                  HorizontalOptions="Center">
 
-                                <!-- Stamp circle -->
+                                <!-- Stamp circle — tappable for ALL parks -->
                                 <Frame WidthRequest="90"
                                        HeightRequest="90"
                                        CornerRadius="45"
@@ -78,6 +78,11 @@
                                        BorderColor="#1B3A2D"
                                        BackgroundColor="White"
                                        HorizontalOptions="Center">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type views:PassportViewModel}}, Path=SelectStampCommand}"
+                                            CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
                                     <Grid>
                                         <Image Source="{Binding StampImageUrl}"
                                                Aspect="AspectFill"
